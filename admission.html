@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admissions | Golden Pen International School</title>
+  <style>
+    /* General Styles */
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+    header { background: purple; color: #fff; padding: 15px 20px; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .navbar .logo { font-size: 1.5rem; font-weight: bold; }
+    .nav-links { list-style: none; display: flex; margin: 0; padding: 0; }
+    .nav-links li { margin: 0 10px; }
+    .nav-links a { color: #fff; text-decoration: none; font-weight: 500; }
+    .nav-links a.active, .nav-links a:hover { text-decoration: underline; }
+    .btn { background: yellow; color: black; padding: 8px 15px; border-radius: 5px; font-weight: bold; text-decoration: none; }
+    .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: #fff; }
+
+    /* Hero Section */
+    .admission-hero { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/b1.jpeg') center/cover no-repeat; color: white; text-align: center; padding: 60px 20px; }
+    .admission-hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .admission-hero p { font-size: 1.2rem; }
+
+    /* Content Section */
+    .page-content { max-width: 900px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .page-content h2 { color: purple; margin-top: 20px; }
+
+    /* Form Section */
+    .admission-form label { display: block; margin-top: 15px; font-weight: bold; }
+    .admission-form input, .admission-form select, .admission-form textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; }
+    .admission-form button { margin-top: 20px; padding: 12px; background: purple; color: #fff; border: none; border-radius: 5px; width: 100%; font-size: 1rem; cursor: pointer; transition: background 0.3s; }
+    .admission-form button:hover { background: darkmagenta; }
+
+    /* Thank You Section */
+    .thankyou-container { display: none; text-align: center; margin-top: 40px; padding: 30px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .thankyou-container h1 { color: purple; }
+    .thankyou-container a { display: inline-block; margin-top: 20px; padding: 12px 20px; background: purple; color: #fff; text-decoration: none; border-radius: 5px; }
+    .thankyou-container a:hover { background: darkmagenta; }
+
+    /* Footer */
+    footer { text-align: center; background: #333; color: #fff; padding: 15px; margin-top: 40px; }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; width: 100%; text-align: center; background: purple; }
+      .nav-links.show { display: flex; }
+      .menu-toggle { display: block; }
+      .btn { display: none; } /* Hide Apply Now button on mobile */
+      .admission-hero h1 { font-size: 1.8rem; }
+      .admission-hero p { font-size: 1rem; }
+      .page-content { margin: 20px; padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">Golden Pen</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="admission.html" class="active">Admission</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="#apply" class="btn">Apply Now</a>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="admission-hero">
+    <h1>Admission at Golden Pen</h1>
+    <p>Join our family of learners and achievers.</p>
+  </section>
+
+  <!-- Admission Information -->
+  <section class="page-content">
+    <h2>Requirements</h2>
+    <ul>
+      <li>Completed admission form</li>
+      <li>Two passport-sized photographs</li>
+      <li>Copy of birth certificate</li>
+      <li>Previous academic records</li>
+    </ul>
+
+    <!-- Online Admission Form -->
+    <h2 id="apply">Apply Online</h2>
+    <form class="admission-form" id="admissionForm">
+      <label for="studentName">Student's Full Name</label>
+      <input type="text" id="studentName" name="studentName" required>
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required>
+
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="">-- Select Gender --</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+
+      <label for="grade">Applying For Grade</label>
+      <select id="grade" name="grade" required>
+        <option value="">-- Select Grade --</option>
+        <option>KG</option>
+        <option>Primary</option>
+        <option>JHS</option>
+        <option>SHS</option>
+      </select>
+
+      <h3>Parent / Guardian Information</h3>
+      <label for="parentName">Parent's Full Name</label>
+      <input type="text" id="parentName" name="parentName" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="+233..." required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email">
+
+      <label for="address">Home Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <button type="submit">Submit Application</button>
+    </form>
+
+    <!-- Thank You Message -->
+    <div class="thankyou-container" id="thankyouMessage">
+      <h1>🎉 Thank You!</h1>
+      <p id="thankyouText">Your application has been received successfully.</p>
+      <a href="index.html">Return to Home</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Golden Pen International School | All Rights Reserved</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Navbar toggle for mobile
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.querySelector(".nav-links");
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    // Admission form submission
+    document.getElementById("admissionForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      let studentName = document.getElementById("studentName").value;
+      document.getElementById("admissionForm").style.display = "none";
+      document.getElementById("thankyouMessage").style.display = "block";
+      document.getElementById("thankyouText").innerText =
+        "Thank you, " + studentName + "! Your application has been received successfully.";
+    });
+  </script>
+</body>
+</html>

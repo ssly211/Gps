@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Golden Pen International School</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">GPS</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="admission.html">Admission</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="system.html">School System Management</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-about">
+    <div class="hero-text">
+      <h1>About Golden Pen International School</h1>
+      <p>Excellence in learning and character development since our founding.</p>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="about-content section">
+    <div class="cards-container">
+      <!-- Mission -->
+      <div class="card">
+        <img src="images/mission.jpg" alt="Mission">
+        <h3>Our Mission</h3>
+        <p>To ensure that all pupils are provided formal education and training through effective and efficient management of standardized resources to make education delivery relevant to the needs of the modern child to make them good stewards of society.</p>
+      </div>
+
+      <!-- Vision -->
+      <div class="card">
+        <img src="images/vision.jpg" alt="Vision">
+        <h3>Our Vision</h3>
+        <p>GPIS seeks to create a conducive environment that enhancesteaching and learning, instilling moral and religious ethic systems that facilitate operational standards to achieve the set goals of the school.</p>
+      </div>
+
+      <!-- Facilities -->
+      <div class="card">
+        <img src="images/facilitate.jpg" alt="Facilities">
+        <h3>Our Facilities</h3>
+        <ul>
+          <li>Modern classrooms with smart boards</li>
+          <li>School buses for safe transport</li>
+          <li>STEM laboratories</li>
+          <li>Playgrounds and sports fields</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta section">
+    <h2>Join Golden Pen School Today!</h2>
+    <p>Apply now and give your child the gift of world-class education.</p>
+    <a href="admission.html" class="btn">Apply Now</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Golden Pen International School. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

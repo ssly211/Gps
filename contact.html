@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us | Golden Pen International School</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+
+  <style>
+    :root{
+      --purple:#4b0082;
+      --purple-dark:#360061;
+      --yellow:#ffd700;
+      --pink:#ff69b4;
+      --bg:#f6f5fb;
+      --card:#ffffff;
+      --muted:#666;
+      --radius:12px;
+      --shadow: 0 8px 24px rgba(75,0,130,0.08);
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    body{ margin:0; font-family:Arial, sans-serif; background:linear-gradient(180deg,var(--bg),#fff); color:#222; }
+
+    header{ background:var(--purple); color:#fff; position:sticky; top:0; z-index:50; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+    .nav{ max-width:var(--max-width); margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:14px; }
+    .logo{ display:flex; align-items:center; gap:10px; font-weight:700; }
+    .logo-badge{ width:38px;height:38px;border-radius:8px; background:linear-gradient(135deg,var(--yellow),var(--pink)); display:flex; align-items:center; justify-content:center; color:var(--purple); font-weight:700; }
+    nav ul{ list-style:none; display:flex; gap:18px; margin:0; padding:0; }
+    nav a{ color:#fff; text-decoration:none; font-weight:600; }
+    nav a.active{ text-decoration:underline; }
+    .apply-btn{ background:var(--yellow); color:var(--purple); padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:700; }
+    .menu-toggle{ display:none; font-size:1.5rem; cursor:pointer; background:transparent; border:none; color:#fff; }
+
+    .hero{ max-width:var(--max-width); margin:24px auto; display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:center; padding:18px; }
+    .hero-left{ background:linear-gradient(180deg, rgba(75,0,130,0.05), rgba(255,105,180,0.02)); padding:28px; border-radius:var(--radius); box-shadow:var(--shadow); }
+    .hero-left h1{ margin:0 0 8px; font-size:clamp(1.4rem,2.6vw,2rem); color:var(--purple) }
+    .hero-left p{ margin:0; color:var(--muted) }
+    .hero-card{ background: linear-gradient(135deg, #fff, rgba(255,255,255,0.9)); border-radius:12px; padding:18px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:10px; }
+
+    .contact-info{ display:grid; gap:12px; }
+    .info-row{ display:flex; gap:12px; align-items:flex-start; }
+    .info-icon{ width:44px;height:44px;border-radius:8px; background:linear-gradient(135deg,var(--yellow),var(--pink)); display:flex; align-items:center; justify-content:center; color:var(--purple); font-weight:700 }
+    .info-text h4{ margin:0;font-size:0.95rem; color:var(--purple) }
+    .info-text p{ margin:4px 0 0; color:var(--muted); font-size:0.92rem }
+
+    main{ max-width:var(--max-width); margin:18px auto; padding:0 18px 60px; }
+    .grid{ display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:start; }
+
+    .card{ background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); }
+    form .row{ display:flex; gap:12px; }
+    form .col{ flex:1; }
+    label{ display:block; font-weight:600; margin-bottom:6px; color:var(--purple); font-size:0.92rem }
+    input, textarea, select{ width:100%; padding:10px 12px; border-radius:8px; border:1px solid #e6e6ee; font-size:0.95rem; background:#fff; color:#222 }
+    textarea{ min-height:120px; resize:vertical; }
+
+    .form-actions{ display:flex; gap:12px; align-items:center; margin-top:14px; }
+    .btn-primary{ background:var(--purple); color:#fff; padding:10px 16px; border-radius:10px; border:none; cursor:pointer; font-weight:700; display:inline-flex; align-items:center; gap:10px; }
+    .btn-secondary{ background:transparent; border:1px solid #eee; padding:10px 14px; border-radius:10px; color:var(--muted); cursor:pointer; }
+    .spinner{ width:16px; height:16px; border:2px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin 0.9s linear infinite; display:inline-block; vertical-align:middle }
+    @keyframes spin{ to{ transform:rotate(360deg) } }
+
+    .note{ font-size:0.9rem; color:var(--muted); margin-top:8px }
+
+    .map{ border-radius:10px; overflow:hidden; }
+    .map iframe{ width:100%; height:260px; border:0; }
+
+    .success{ display:none; padding:18px; border-radius:12px; background: linear-gradient(135deg, #e9ffe6, #fff); color:#064; box-shadow:var(--shadow); }
+    .live-region{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+
+    footer{ max-width:var(--max-width); margin:28px auto; padding:18px; color:#666; text-align:center; font-size:0.95rem }
+
+    @media(max-width:980px){
+      .hero{ grid-template-columns:1fr; padding:12px }
+      .grid{ grid-template-columns:1fr; }
+      .hero-card{ order:2 }
+      .menu-toggle{ display:block; }
+      nav ul{ display:none; width:100%; margin-top:10px; background:var(--purple); padding:12px; border-radius:8px }
+      nav ul.show{ display:flex; flex-direction:column; gap:8px }
+      nav a{ color:#fff }
+      .apply-btn{ display:none }
+    }
+
+    @media(max-width:520px){
+      .hero-left h1{ font-size:1.3rem }
+      .map iframe{ height:200px }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-badge" aria-hidden="true">GP</div>
+        <div>
+          <div style="font-weight:800">Golden Pen</div>
+          <div style="font-size:0.85rem; opacity:0.85">International School</div>
+        </div>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle menu">☰</button>
+
+      <nav id="mainNav" aria-label="Primary">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="admission.html">Admission</a></li>
+          <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a class="apply-btn" href="admission.html">Apply Now</a>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <section class="hero" aria-labelledby="contactHeading">
+    <div class="hero-left">
+      <h1 id="contactHeading">Contact Golden Pen International School</h1>
+      <p>We’re here to help — reach out with questions about admissions, programs, fees, or visits. We aim to respond within 24–48 hours.</p>
+    </div>
+
+    <div class="hero-card">
+      <div class="contact-info">
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div class="info-text">
+            <h4>Location</h4>
+            <p>Kumasi, Ghana</p>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">✉️</div>
+          <div class="info-text">
+            <h4>Email</h4>
+            <p>info@goldenpen.edu</p>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div class="info-text">
+            <h4>Phone</h4>
+            <p>+233 20 979 2015</p>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">⏰</div>
+          <div class="info-text">
+            <h4>Hours</h4>
+            <p>Mon–Fri • 8:00 AM – 4:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="grid">
+      <div class="card" aria-live="polite">
+        <h3 style="margin-top:0">Send Us a Message</h3>
+        <p class="note">Fields marked * are required.</p>
+
+        <form id="contactForm" novalidate>
+          <div class="row">
+            <div class="col">
+              <label for="fullname">Full name *</label>
+              <input id="fullname" name="fullname" type="text" required placeholder="e.g. Ama Owusu" />
+            </div>
+            <div class="col">
+              <label for="phone">Phone *</label>
+              <input id="phone" name="phone" type="tel" required placeholder="+233 20 000 0000" pattern="^\\+?[0-9\\s\\-]{7,20}$" />
+            </div>
+          </div>
+
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
+          <label for="subject">Subject *</label>
+          <input id="subject" name="subject" type="text" required placeholder="Admission enquiry / General" />
+
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" required placeholder="Write your message here..."></textarea>
+
+          <label for="attachment">Attachment (optional)</label>
+          <input id="attachment" name="attachment" type="file" accept=".pdf,.jpg,.png" />
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary" id="submitBtn">
+              <span id="btnLabel">Send Message</span>
+              <span id="btnSpinner" style="display:none" class="spinner" aria-hidden="true"></span>
+            </button>
+
+            <button type="button" id="resetBtn" class="btn-secondary">Reset</button>
+          </div>
+
+          <p class="note">Or email <a href="mailto:info@goldenpen.edu">info@goldenpen.edu</a> or call +233 20 979 2015.</p>
+        </form>
+
+        <div class="success" id="successBox" role="status" aria-live="polite">
+          <strong id="successTitle">Thanks — message sent!</strong>
+          <p id="successMessage">We received your message and will reply within 1–2 business days.</p>
+          <p><a href="index.html">Return to home</a></p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <div class="card">
+          <h4 style="margin-top:0">Visit Us</h4>
+          <div class="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.6926406985944!2d-1.7069915138732904!3d6.7178722944226195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb9987eced1d43%3A0x52cdb0f01b4897d3!2sGolden%20Pen%20International%20School!5e1!3m2!1sen!2sgh!4v1700000000000!5m2!1sen!2sgh"
+              width="600"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <p class="note">Feel free to stop by. We’re located right here on AH-1196-4230, Kumasi.</p>
+        </div>
+
+        <div class="card">
+          <h4 style="margin-top:0">Follow Us</h4>
+          <p class="note">Stay updated — social links</p>
+          <div style="display:flex;gap:12px; margin-top:8px;">
+            <a href="#" style="padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,var(--yellow),var(--pink));text-decoration:none;color:var(--purple);font-weight:700">Facebook</a>
+            <a href="#" style="padding:8px 12px;border-radius:8px;background:var(--purple);text-decoration:none;color:#fff;font-weight:700">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Golden Pen International School — Kumasi • info@goldenpen.edu • +233 20 979 2015
+  </footer>
+
+  <div class="live-region" aria-live="polite" id="ariaLive"></div>
+
+  <script>
+    // NAV TOGGLE
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle && menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
+      navLinks.classList.toggle('show');
+    });
+
+    // FORM HANDLING
+    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+    let emailjsReady = false;
+    try {
+      if (EMAILJS_PUBLIC_KEY && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY' && window.emailjs) {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        emailjsReady = true;
+      }
+    } catch(e) {
+      console.warn('EmailJS init error', e);
+      emailjsReady = false;
+    }
+
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnLabel = document.getElementById('btnLabel');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const successBox = document.getElementById('successBox');
+    const successTitle = document.getElementById('successTitle');
+    const successMessage = document.getElementById('successMessage');
+    const ariaLive = document.getElementById('ariaLive');
+
+    function setLoading(on) {
+      if (on) {
+        submitBtn.disabled = true;
+        btnSpinner.style.display = 'inline-block';
+        btnLabel.textContent = 'Sending...';
+      } else {
+        submitBtn.disabled = false;
+        btnSpinner.style.display = 'none';
+        btnLabel.textContent = 'Send Message';
+      }
+    }
+
+    function sanitizeText(str){
+      return String(str).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      setLoading(true);
+
+      if (emailjsReady && EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID' && EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID') {
+        emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+          .then(() => {
+            showSuccess();
+            setLoading(false);
+          })
+          .catch(err => {
+            setLoading(false);
+            alert('Failed to send message. Please try again or contact us directly.');
+            console.error('EmailJS error', err);
+          });
+      } else {
+        // Simulate success for testing
+        setTimeout(() => {
+          showSuccess();
+          setLoading(false);
+        }, 800);
+      }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      form.reset();
+    });
+
+    function showSuccess(){
+      const name = document.getElementById('fullname').value || 'Friend';
+      successTitle.textContent = 'Thanks, ' + sanitizeText(name) + '!';
+      successMessage.textContent = 'We received your message and will reply within 1–2 business days.';
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+      ariaLive.textContent = 'Message sent successfully';
+      successBox.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  </script>
+</body>
+</html>

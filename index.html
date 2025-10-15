@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden Pen International School</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #4b0082;
+      color: #fff;
+      padding: 15px 20px;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: #ffd700;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    /* Hero */
+    .hero-slider {
+      position: relative;
+      height: 70vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #fff;
+      background: rgba(0,0,0,0.4);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .hero-text h1 span {
+      color: #ffd700;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ffd700;
+      color: #4b0082;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #e6b800;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 900px;
+      margin: 0 auto 20px;
+    }
+
+    /* Features */
+    .features.section {
+      background: linear-gradient(135deg, #e6ccff, #fff0cc, #ffe6f0);
+    }
+
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .feature-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+    }
+
+    /* Gallery */
+    .gallery.section {
+      background: linear-gradient(135deg, #fff0cc, #ffe6f0, #e6ccff);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    /* CTA */
+    .cta {
+      background: #4b0082;
+      color: #fff;
+      padding: 60px 20px;
+    }
+
+    .cta .btn {
+      background: #ffd700;
+      color: #4b0082;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #4b0082;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-text h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero-text {
+        padding: 15px;
+      }
+
+      .features-container,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card img,
+      .gallery-grid img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">GPS</div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="admission.html">Admission</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="https://portal.goldenpenschoolgh.com/" target="_blank">School System Management</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Hero Slider -->
+  <header class="hero-slider">
+    <div class="slide active" style="background-image: url('images/logo.jpeg');">
+      <div class="hero-text">
+        <h1>Welcome to <span>Golden Pen</span> School</h1>
+        <p>Where education meets excellence</p>
+        <a href="admission.html" class="btn">Apply Now</a>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('images/b1.jpeg');">
+      <div class="hero-text">
+        <h1>Fun & Learning Together</h1>
+        <p>State-of-the-art playgrounds for students</p>
+      </div>
+    </div>
+    <div class="slide" style="background-image: url('images/b2.png');">
+      <div class="hero-text">
+        <h1>STEM-Based Education</h1>
+        <p>Preparing students for the future</p>
+      </div>
+    </div>
+    <div class="slider-controls">
+      <span class="prev">&#10094;</span>
+      <span class="next">&#10095;</span>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="about section">
+    <h2>About Us</h2>
+    <p>Golden Pen International School is committed to academic excellence, moral integrity, and holistic development of every student. Our programs focus on STEM education, arts, sports, and leadership skills.</p>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features section">
+    <h2>Our Features</h2>
+    <div class="features-container">
+      <div class="feature-card">
+        <img src="images/student.jpg" alt="Student Management">
+        <h3>Student Management</h3>
+        <p>Track student progress, attendance, and records efficiently.</p>
+      </div>
+      <div class="feature-card">
+        <img src="images/teacher.jpg" alt="Teacher Management">
+        <h3>Teacher Management</h3>
+        <p>Manage teacher profiles, schedules, and subjects seamlessly.</p>
+      </div>
+      <div class="feature-card">
+        <img src="images/stem.jpg" alt="STEM Lab">
+        <h3>STEM Lab</h3>
+        <p>Advanced STEM labs to encourage innovation and hands-on learning.</p>
+      </div>
+      <div class="feature-card">
+        <img src="images/playground.jpg" alt="Playground">
+        <h3>Playground</h3>
+        <p>Safe and fun spaces for physical development and sports.</p>
+      </div>
+      <div class="feature-card">
+        <img src="images/library.jpg" alt="Library">
+        <h3>Library</h3>
+        <p>Well-stocked library with books, resources, and study areas.</p>
+      </div>
+      <div class="feature-card">
+        <img src="images/sports.jpg" alt="Sports">
+        <h3>Sports</h3>
+        <p>Engaging sports programs to develop teamwork and discipline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery section">
+    <h2>Our Gallery</h2>
+    <div class="gallery-grid">
+      <img src="images/bus.jpg" alt="School Bus">
+      <img src="images/playground.jpg" alt="Playground">
+      <img src="images/stem.jpg" alt="STEM Class">
+      <img src="images/classroom.jpg" alt="Classroom">
+      <img src="images/student.jpg" alt="Students">
+      <img src="images/teachers.jpg" alt="Teachers">
+      <img src="images/library.jpg" alt="Library">
+      <img src="images/lab.jpg" alt="Science Lab">
+      <img src="images/sports.jpg" alt="Sports">
+    </div>
+  </section>
+
+  <!-- Call-to-Action -->
+  <section class="cta section">
+    <h2>Join Golden Pen School Today!</h2>
+    <p>Apply now and give your child the gift of world-class education.</p>
+    <a href="admission.html" class="btn">Apply Now</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Golden Pen International School. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Mobile menu
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+
+    // Hero Slider
+    let slides = document.querySelectorAll('.slide');
+    let index = 0;
+
+    function showSlide(n) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === n) slide.classList.add('active');
+      });
+    }
+
+    document.querySelector('.next').onclick = () => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    };
+
+    document.querySelector('.prev').onclick = () => {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    };
+
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }, 5000);
+
+    // Ensure first slide is visible on load
+    showSlide(index);
+  </script>
+</body>
+</html>

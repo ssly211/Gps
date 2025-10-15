@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Golden Pen International School</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Navbar */
+    body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fafafa; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; background: purple; padding: 10px 20px; color: #fff; position: sticky; top: 0; z-index: 1000; }
+    .logo img { height: 50px; width: auto; }
+    .nav-links { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+    .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: yellow; }
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger span { background: white; height: 3px; margin: 5px 0; width: 25px; border-radius: 5px; }
+
+    /* Page Header */
+    .page-header { text-align: center; padding: 60px 20px; background: linear-gradient(to right, purple, pink); color: white; }
+    .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    .page-header p { font-size: 1.2rem; }
+
+    Gallery Grid 
+    .gallery { padding: 40px 20px; max-width: 1200px; margin: auto; }
+    .gallery-grid { columns: 3 250px; column-gap: 15px; }
+    .gallery-grid img { width: 100%; border-radius: 10px; margin-bottom: 15px; transition: transform 0.4s, box-shadow 0.3s; cursor: pointer; }
+    .gallery-grid img:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+    /* Lightbox */
+    .lightbox { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+    .lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+    .lightbox:target { display: flex; }
+    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 2rem; text-decoration: none; }
+
+    /* Footer */
+    footer { text-align: center; background: #333; color: #fff; padding: 20px; margin-top: 40px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; background: purple; width: 100%; text-align: center; }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="images/logo.jpeg" alt="Golden Pen Logo"></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="admission.html">Admission</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="system.html">School System</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Gallery Header -->
+  <section class="page-header">
+    <h1>Our Gallery</h1>
+    <p>Explore life at Golden Pen International School</p>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="gallery">
+    <div class="gallery-grid">
+      <a href="#img1"><img src="images/bus.jpg" alt="School Bus"></a>
+      <a href="#img2"><img src="images/playground.jpg" alt="Playground"></a>
+      <a href="#img3"><img src="images/stem.jpg" alt="STEM Class"></a>
+      <a href="#img4"><img src="images/classroom.jpg" alt="Classroom"></a>
+      <a href="#img5"><img src="images/student.jpg" alt="Students"></a>
+      <a href="#img6"><img src="images/teacher.jpg" alt="Teachers"></a>
+      <a href="#img7"><img src="images/library.jpg" alt="Library"></a>
+      <a href="#img8"><img src="images/lab.jpg" alt="Science Lab"></a>
+      <a href="#img9"><img src="images/sports.jpg" alt="Sports"></a>
+    </div>
+  </section>
+
+  <!-- Lightbox Views -->
+  <div id="img1" class="lightbox"><a href="#" class="lightbox-close">&times;</a><img src="images/bus.jpg"></div>
+  <div id="img2" class="lightbox"><a href="#" class="lightbox-close">&times;</a><img src="images/playground.jpg"></div>
+  <div id="img3" class="lightbox"><a href="#" class="lightbox-close">&times;</a><img src="images/stem.jpg"></div>
+  <div id="img4" class="lightbox"><a href="#" class="lightbox-close">&times;</a><img src="images/classroom.jpg"></div>
+  <div id="img5" class="lightbox"><a href="#" class="lightbox-close">&times;</a><img src="images/student.jpg"></div>
+  <div id="img6" class="lightbox"><a href="#" class="lightbox-close">&times;</a><img src="image/teacher.jpg"></div>
+  <div id="img7" class="lightbox"><a href="#" class="lightbox-close">&times;</a><img src="images/library.jpg"></div>
+  <div id="img8" class="lightbox"><a href="#" class="lightbox-close">&times;</a><img src="images/lab.jpg"></div>
+  <div id="img9" class="lightbox"><a href="#" class="lightbox-close">&times;</a><img src="images/sports.jpg"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Golden Pen International School. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
